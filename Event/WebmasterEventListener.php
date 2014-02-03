@@ -41,7 +41,7 @@ class WebmasterEventListener implements CakeEventListener {
 		$link = sprintf('<a href="%s">%s</a>', Router::url($default), __d('webmaster', "Create it now"));
 		$filename = '`robots.txt`';
 
-		$Event->result = Hash::merge((array) $Event->result, array('flashMessages' => array(
+		$Event->result = Hash::merge((array) $Event->result, array('alertMessages' => array(
 			'robots.success' => array(
 				'message' => __d('webmaster', "Your %s file was successfully updated.", $filename),
 				'redirect' => Router::url(array_merge($default, array('action' => 'dashboard')))

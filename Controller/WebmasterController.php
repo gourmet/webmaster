@@ -115,7 +115,7 @@ class WebmasterController extends WebmasterAppController {
  */
 	public function admin_index() {
 		if (!$this->_robotsExists() && !$this->_getRobotsFile()->exists()) {
-			$this->flash('robots.invalid');
+			$this->alert('robots.invalid');
 		}
 
 		$this->set('usage', CacheManager::usage());
@@ -140,7 +140,7 @@ class WebmasterController extends WebmasterAppController {
  */
 	public function admin_robots() {
 		if ($this->_robotsExists()) {
-			$this->flash('robots.exists');
+			$this->alert('robots.exists');
 		}
 
 		$File = $this->_getRobotsFile();
@@ -164,14 +164,14 @@ class WebmasterController extends WebmasterAppController {
 		}
 
 		if (($File->exists() || $File->create()) && $File->write($this->request->data['robots'])) {
-			$this->flash('robots.success');
+			$this->alert('robots.success');
 		}
 
 		if (Configure::read('debug')) {
 			throw new InternalErrorException(__d('webmaster', "Could not write `robots.txt` to %s", TMP));
 		}
 
-		$this->flash('robots.fail');
+		$this->alert('robots.fail');
 	}
 
 /**
